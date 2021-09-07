@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="#">
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <title>URL Shortner</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBxCMMfxPn5PdSO6Pk3AqOif6BXxrUnKW35Q&usqp=CAU"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          ShortURLs
+        </a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <form action="/shorten" method="POST">
+        <% if ( originalUrl) { %>
+          <div class="mb-3">
+            <label for="" class="form-label">Original URL: </label>
+            <input type="text" readonly class="form-control" id="originalUrl" name="originalUrl" value="<%= originalUrl %>" aria-describedby="originalUrlHelp">
+          </div>
+        <% } else { %>
+          <div class="mb-3">
+            <label for="" class="form-label">Enter your URL: </label>
+            <input type="text" class="form-control" id="originalUrl" name="originalUrl" aria-describedby="originalUrlHelp">
+            <div id="originalUrlHelp" class="form-text">We make your long urls shorter:)</div>
+          </div>
+        <% } %>
+        <% if (shortUrl) { %>
+          <div class="mb-3">
+            <label for="" class="form-label">Shortened URL: </label>
+            <a href="http://<%= shortUrl %>" target="_blank" >
+              <input type="text" readonly class="form-control" id="shortenUrl" value="<%= shortUrl %>">
+            </a>
+          </div>
+        <% } else { %>
+          <div class="mb-3">
+            <label for="" class="form-label">Shortened URL: </label>
+            <input type="text" disabled class="form-control" id="shortenUrl" placeholder="shortened url">
+          </div>
+        <% } %>
+        
+        <button class="btn btn-success" type="submit" name="shorten" value="shorten">Shorten</button>
+        <button class="btn btn-success" type="submit" name="reset" value="reset">Reset</button>
+      </form>
+    </div>
+
+  </body>
+</html>
